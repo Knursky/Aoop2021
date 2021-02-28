@@ -1,24 +1,17 @@
 package wsb.creatures;
 
-
+import wsb.database.Connector;
+import wsb.food.FoodType;
 
 import java.io.File;
 import java.sql.SQLException;
 
 public class Animal implements Feedable, Comparable<Animal> {
-
-    public enum FoodType {
-        MEAT,
-        CROPS,
-        ALL
-    }
-
-    final FoodType foodType;
     final String species;
     private Double weight;
     public String name;
     File pic;
-
+    private final FoodType foodType;
 
     private static Double NEW_DOG_WEIGHT = 4.0;
     private static Double NEW_LION_WEIGHT = 39.2;
@@ -26,25 +19,22 @@ public class Animal implements Feedable, Comparable<Animal> {
 
     private static Double DEFAULT_FEED_WEIGHT = 1.0;
 
-    public Animal(String species) {
+    public Animal(String species, FoodType foodType) {
+        this.foodType = foodType;
         System.out.println("we created new Animal");
         this.species = species;
-
 
         switch (species) {
             case "dog": {
                 weight = NEW_DOG_WEIGHT;
-                this.foodType = FoodType.ALL;
                 break;
             }
             case "lion": {
                 weight = NEW_LION_WEIGHT;
-                this.foodType = FoodType.MEAT;
                 break;
             }
             default: {
                 weight = NEW_OTHER_ANIMAL_WEIGHT;
-                this.foodType = FoodType.CROPS;
                 break;
             }
         }
@@ -55,11 +45,10 @@ public class Animal implements Feedable, Comparable<Animal> {
         }
     }
 
-
-    public Animal(String species, Double weight, FoodType FoodType) {
-        this.foodType = FoodType;
+    public Animal(String species, Double weight, FoodType foodType) {
         this.weight = weight;
         this.species = species;
+        this.foodType = foodType;
         try {
             this.save();
         } catch (SQLException e) {
@@ -69,23 +58,20 @@ public class Animal implements Feedable, Comparable<Animal> {
 
 
     public void feed() {
-        feed(DEFAULT_FEED_WEIGHT);
+        feed(DEFAULT_FEED_WEIGHT, foodType);
     }
 
-    public void feed(Double foodWeight) {
+
+    public void feed(Double foodWeight, FoodType foodType) {
         if (weight == 0) {
             System.out.println("too late, " + name + " is dead");
-        } else {
-            switch (this.foodType){
-                case MEAT: weight += 0.7 * foodWeight;
-                break;
-                case ALL: weight += 0.5 * foodWeight;
-                break;
-                case CROPS: weight += 0.3 * foodWeight;
-            }
-            weight += foodWeight;
-            System.out.println(name + " says thx for food");
+            return;
         }
+        if (!foodType.equals(this.foodType))
+            return;
+        weight = foodWeight * foodType.getFoodToBodyRatio();
+        System.out.println(name + " says thx for food");
+
     }
 
     public void takeForAWalk() {
@@ -124,6 +110,6 @@ public class Animal implements Feedable, Comparable<Animal> {
     public void save() throws SQLException {
         String sql = "insert into animal values ('" + this.species + "','" + this.name + "'," + this.weight + ");";
         System.out.println(sql);
-       // Connector.executeSQL(sql);
+        Connector.executeSQL(sql);
     }
 }

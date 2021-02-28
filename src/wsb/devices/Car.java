@@ -3,6 +3,8 @@ package wsb.devices;
 import wsb.creatures.Human;
 import wsb.Soldable;
 
+import java.util.Comparator;
+
 public abstract class Car extends Device implements Soldable, Comparable<Car> {
     public final Integer yearOfProduction;
     public final Double sizeOfAnEngine;
