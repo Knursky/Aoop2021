@@ -7,14 +7,30 @@ import wsb.creatures.Pet;
 import wsb.database.Connector;
 import wsb.devices.*;
 import wsb.food.FoodType;
+import wsb.threds.RunnableCounter;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class Main {
 
+    public static void main(String[] args) {
+        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+
+        executor.submit(new RunnableCounter());
+        executor.submit(new RunnableCounter());
+        executor.submit(new RunnableCounter());
+        executor.shutdown();
+
+    }
+}
+
+    /*
     public static void main(String[] args) throws Exception {
 
         Map<String, Car> carMap = new HashMap<>();
@@ -106,4 +122,4 @@ public class Main {
         System.out.println(me.mobile.isInstalled("facebook"));
         System.out.println(me.mobile.isInstalled("messenger"));
     }
-}
+}*/
