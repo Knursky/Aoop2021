@@ -1,14 +1,40 @@
 package wsb;
 
+import wsb.threds.CallableCounter;
 import wsb.threds.RunnableCounter;
 import wsb.threds.Finisher;
+
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class Main
-{ public static void main(String[] args) {
+public class Main {
+
+    //task9f
+    public static void main(String[] args) throws Exception {
+        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+        CallableCounter cage = new CallableCounter();
+        CallableCounter liuKang = new CallableCounter();
+
+        System.out.println("test1");
+       Future<Double> cageHP = executor.submit(cage);
+       Future<Double> liuKangHP = executor.submit(liuKang);
+        System.out.println("test2");
+        System.out.println("test2");
+        System.out.println("test2");
+        System.out.println("test2");
+        System.out.println(cageHP.get());
+        System.out.println("test3");
+        System.out.println(liuKangHP.get());
+
+executor.shutdown();
 
 
+
+}}
+    /*
+//task9d
     ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
     RunnableCounter subZero = new RunnableCounter();
     subZero.finisher = () -> System.out.println("you are frozen and ugly");
@@ -21,7 +47,7 @@ public class Main
         }
 }
 
-
+*/
 
     //task9c
     /*
