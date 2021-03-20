@@ -8,6 +8,8 @@ import wsb.database.Connector;
 import wsb.devices.*;
 import wsb.food.FoodType;
 import wsb.threds.RunnableCounter;
+import wsb.threds.Scorpion;
+import wsb.threds.SubZero;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +21,18 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class Main {
 
+    
+}
+
+/*Task9b
+    public static void main(String[] args) {
+        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+        executor.submit(new SubZero());
+        executor.submit(new Scorpion());
+        executor.shutdown();
+    }
+}*/
+/*task9a
     public static void main(String[] args) {
         ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
 
@@ -28,7 +42,7 @@ public class Main {
         executor.shutdown();
 
     }
-}
+}*/
 
     /*
     public static void main(String[] args) throws Exception {
