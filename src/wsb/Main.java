@@ -1,28 +1,42 @@
 package wsb;
 
-import wsb.creatures.Animal;
-import wsb.creatures.Gender;
-import wsb.creatures.Human;
-import wsb.creatures.Pet;
-import wsb.database.Connector;
-import wsb.devices.*;
-import wsb.food.FoodType;
 import wsb.threds.RunnableCounter;
-import wsb.threds.Scorpion;
-import wsb.threds.SubZero;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.concurrent.ExecutionException;
+import wsb.threds.Finisher;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class Main {
+public class Main
+{ public static void main(String[] args) {
 
-    
 }
+}
+
+    //task9c
+    /*
+    ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+    RunnableCounter subZero = new RunnableCounter();
+    subZero.finisher = new Finisher() {
+        @Override
+        public void finishHim() {
+            System.out.println("you are frozen and ugly");
+        }
+    };
+    RunnableCounter scorpion = new RunnableCounter();
+    scorpion.finisher = new Finisher() {
+        @Override
+        public void finishHim() {
+            System.out.println("you are poisoned");
+        }
+    };
+
+
+    executor.submit(subZero);
+    executor.submit(scorpion);
+    executor.shutdown();
+}
+
+
+}*/
 
 /*Task9b
     public static void main(String[] args) {

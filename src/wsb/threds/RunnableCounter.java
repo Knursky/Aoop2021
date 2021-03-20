@@ -2,6 +2,7 @@ package wsb.threds;
 
 public class RunnableCounter implements Runnable {
     static final public Integer START_FROM = 4;
+    public Finisher finisher;
 
     @Override
     public void run() {
@@ -15,5 +16,6 @@ public class RunnableCounter implements Runnable {
 
             }
         }
+        finisher.finishHim();
     }
 }
