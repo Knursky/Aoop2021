@@ -8,8 +8,20 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class Main
 { public static void main(String[] args) {
 
+
+    ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+    RunnableCounter subZero = new RunnableCounter();
+    subZero.finisher = () -> System.out.println("you are frozen and ugly");
+
+    RunnableCounter scorpion = new RunnableCounter();
+    scorpion.finisher =  ()-> System.out.println("you are poisoned");
+        executor.submit(subZero);
+    executor.submit(scorpion);
+    executor.shutdown();
+        }
 }
-}
+
+
 
     //task9c
     /*
