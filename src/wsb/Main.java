@@ -1,17 +1,38 @@
 package wsb;
+import wsb.creatures.*;
+import wsb.database.Connector;
+import wsb.devices.*;
+import wsb.food.FoodType;
 
 import wsb.threds.CallableCounter;
 import wsb.threds.RunnableCounter;
 import wsb.threds.Finisher;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 
 public class Main {
+    public static void main(String[] args) throws Exception {
+//TASK8
+        AnonymousComparator();}
+    private static void AnonymousComparator() throws SQLException {
+            List<Animal> animals = new ArrayList<>(List.of(
+                    new Human(5, 1, FoodType.ALL),
+                    new Human(1, 1, FoodType.ALL),
+                    new Human(2, 1, FoodType.ALL),
+                    new Pet("Dog", FoodType.ALL),
+                    new FarmAnimal("Cow", FoodType.CROPS)
+            ));
+        }
 
-    //task9f
+}
+   /* //task9f
     public static void main(String[] args) throws Exception {
         ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
         CallableCounter cage = new CallableCounter();
@@ -31,7 +52,7 @@ public class Main {
 executor.shutdown();
 
 
-
+*/
 }}
     /*
 //task9d
