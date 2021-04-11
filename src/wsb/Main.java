@@ -29,6 +29,10 @@ public class Main {
                     new Pet("Dog", FoodType.ALL),
                     new FarmAnimal("Cow", FoodType.CROPS)
             ));
+
+            //task11
+        animals.sort((Comparator.comparingDouble(Animal::getWeight)));
+        animals.forEach(System.out::println);
         }
 
 }

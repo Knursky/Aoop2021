@@ -89,7 +89,7 @@ public class Animal implements Feedable, Comparable<Animal> {
         }
     }
 
-    Double getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
