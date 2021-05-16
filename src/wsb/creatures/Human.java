@@ -1,20 +1,23 @@
 package wsb.creatures;
-
+import wsb.annotations.Mapped;
 import wsb.devices.Car;
 import wsb.devices.Phone;
 import wsb.food.FoodType;
 
 public class Human extends Animal {
+    @Mapped
     public String firstName;
+    @Mapped
     public String lastName;
+    @Mapped
     public Pet pet;
+    @Mapped
     public Phone mobile;
     public Car[] garage;
 
     public Animal[] farm;
 
-    protected String phoneNumber;
-    private Double salary;
+
     public Double cash = 200.0;
     private Gender gender;
     private final FoodType foodType;
@@ -45,9 +48,7 @@ public class Human extends Animal {
         this.garage = new Car[DEFAULT_GARAGE_SIZE];
     }
 
-    public Double getSalary() {
-        return salary;
-    }
+
 
     public void sayImFirst() {
         if (gender.equals(Gender.MALE))
